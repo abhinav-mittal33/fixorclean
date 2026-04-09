@@ -1,0 +1,63 @@
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model User {
+  id        String   @id @default(cuid())
+  email     String   @unique
+  name      String?
+  surveys   Survey[]
+  createdAt DateTime @default(now())
+}
+
+model Survey {
+  id          String   @id @default(cuid())
+  title       String
+  description String?
+  userId      String
+  user        User     @relation(fields: [userId], references: [id])
+  imports     DataImport[]
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model DataImport {
+  id           String      @id @default(cuid())
+  surveyId     String
+  survey       Survey      @relation(fields: [surveyId], references: [id])
+  status       String      @default("PENDING") // "PENDING", "CLEANED", "ERROR"
+  filename     String
+  originalData String      // Storing JSON string for simplicity instead of file system in MVP
+  cleanedData  String?     // Storing JSON string of cleaned data
+  playbookId   String?
+  playbook     Playbook?   @relation(fields: [playbookId], references: [id])
+  auditLogs    AuditLog[]
+  createdAt    DateTime    @default(now())
+}
+
+model Playbook {
+  id          String       @id @default(cuid())
+  name        String
+  rules       String       // JSON defining cleaning rules
+  imports     DataImport[]
+  createdAt   DateTime     @default(now())
+}
+
+model AuditLog {
+  id          String     @id @default(cuid())
+  importId    String
+  importRef   DataImport @relation(fields: [importId], references: [id])
+  row         Int
+  column      String
+  original    String
+  newValue    String
+  rule        String
+  confidence  Float
+  status      String     @default("PENDING") // "APPLIED", "REJECTED", "PENDING"
+  timestamp   DateTime   @default(now())
+}
