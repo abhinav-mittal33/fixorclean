@@ -11,7 +11,7 @@
 
 <br/>
 
-![FixOrClean Dashboard](public/sample-survey.csv)
+![Hero](public/screenshot-hero.png)
 
 </div>
 
@@ -45,7 +45,15 @@ Raw Google Form CSV  →  AI Cleaning Engine  →  Clean Dataset + Visual Report
 
 ---
 
+### Before & After
+
+![Before and After Transformation](public/screenshot-transform.png)
+
+---
+
 ## Features
+
+![Features Overview](public/screenshot-features.png)
 
 | Feature | Description |
 |---|---|

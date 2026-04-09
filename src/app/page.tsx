@@ -30,11 +30,6 @@ const FEATURES = [
   { icon: '🛡️', title: 'Survey Design Checker', desc: 'Paste a Google Form URL before you launch. AI scores it for bias, clarity, and scale balance.' },
 ];
 
-const TESTIMONIALS = [
-  { quote: "We used to spend an entire Friday cleaning one semester's feedback data. Now it takes 4 minutes.", name: 'Dr. Meera Krishnan', role: 'Associate Professor, BITS Pilani', initials: 'MK' },
-  { quote: "The open-text clustering alone saved my team 6 hours of manual coding. Absolutely remarkable.", name: 'Arjun Mehta', role: 'Research Lead, Nielsen India', initials: 'AM' },
-  { quote: "We collect 2,000+ responses per survey. FixOrClean cut our analysis pipeline from 3 days to 40 minutes.", name: 'Sneha Iyer', role: 'People Analytics, Infosys', initials: 'SI' },
-];
 
 const BEFORE = [
   { name: 'john SMITH',   email: 'john@gmal.com',     phone: '9876543210',      gender: 'M' },
@@ -75,7 +70,7 @@ export default function LandingPage() {
             Fix<span style={{ color: 'var(--teal)' }}>Or</span>Clean
           </Link>
           <div style={{ display: 'flex', gap: '32px' }}>
-            {['How It Works|#how-it-works','Features|#features','Stories|#testimonials'].map(l => {
+            {['How It Works|#how-it-works','Features|#features'].map(l => {
               const [label, href] = l.split('|');
               return <a key={href} href={href} style={{ color: 'var(--muted)', fontWeight: 500, fontSize: '13px', textDecoration: 'none' }}>{label}</a>;
             })}
@@ -243,31 +238,6 @@ export default function LandingPage() {
         </div>
       </section>
 
-      {/* ── Testimonials ── */}
-      <section id="testimonials" style={{ borderBottom: '0.5px solid var(--border)', padding: '80px 0', background: 'var(--bg-secondary)' }}>
-        <div className="container">
-          <motion.div {...fadeUp()} style={{ textAlign: 'center', marginBottom: '56px' }}>
-            <h2 style={{ fontFamily: 'var(--font-serif)', fontSize: 'clamp(28px,3vw,42px)', fontWeight: 700, letterSpacing: '-1px', marginBottom: '16px' }}>
-              Trusted by researchers<br /><em style={{ color: 'var(--teal)' }}>across India.</em>
-            </h2>
-          </motion.div>
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '20px' }}>
-            {TESTIMONIALS.map((t, i) => (
-              <motion.div key={i} {...fadeUp(i * 0.1)} className="glass-card" style={{ padding: '32px' }}>
-                <div style={{ fontSize: '32px', color: 'var(--teal)', lineHeight: 1, marginBottom: '16px' }}>&ldquo;</div>
-                <p style={{ fontSize: '14px', lineHeight: 1.8, color: 'var(--ink)', fontWeight: 300, marginBottom: '24px', fontStyle: 'italic' }}>{t.quote}</p>
-                <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
-                  <div style={{ width: 40, height: 40, borderRadius: '50%', background: 'var(--teal)', color: 'white', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '13px', fontWeight: 700 }}>{t.initials}</div>
-                  <div>
-                    <div style={{ fontSize: '13px', fontWeight: 700 }}>{t.name}</div>
-                    <div style={{ fontSize: '12px', color: 'var(--muted)' }}>{t.role}</div>
-                  </div>
-                </div>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
 
       {/* ── Final CTA (Aurora) ── */}
       <AuroraBackground showRadialGradient={false} style={{ minHeight: 'auto', height: 'auto', padding: '100px 0' } as React.CSSProperties} className="h-auto">
@@ -296,7 +266,7 @@ export default function LandingPage() {
             <p style={{ color: 'var(--muted)', marginTop: '4px', fontSize: '12px' }}>Survey Intelligence Platform · India</p>
           </div>
           <div style={{ display: 'flex', gap: '32px' }}>
-            {['How It Works|#how-it-works','Features|#features','Stories|#testimonials'].map(l => {
+            {['How It Works|#how-it-works','Features|#features'].map(l => {
               const [label, href] = l.split('|');
               return <a key={href} href={href} style={{ color: 'var(--muted)', fontSize: '13px', fontWeight: 500, textDecoration: 'none' }}>{label}</a>;
             })}
